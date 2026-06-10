@@ -382,7 +382,7 @@ function DestinyChart() {
     });
     const timeInputRef = useRef<HTMLInputElement>(null);
     const [province, setProvince] = useState('北京');
-    const [city, setCity] = useState('北京');
+    const [city, setCity] = useState(() => String(PROV_CITIES.find(([p]) => p === '北京')?.[1]?.[0]?.[1] ?? ''));
     const [cityName, setCityName] = useState('北京');
 
     // Result state
@@ -415,6 +415,10 @@ function DestinyChart() {
 
     // Derived cities
     const cities = PROV_CITIES.find(([p]) => p === province)?.[1] || [];
+    const selectedCityLng = useMemo(() => {
+        const matchedCity = cities.find(([cName]) => cName === cityName);
+        return matchedCity ? String(matchedCity[1]) : city;
+    }, [cities, cityName, city]);
 
     const shareData = useMemo(() => {
         if (!reading) {
@@ -845,7 +849,7 @@ function DestinyChart() {
             g: gender,
             bd: birthDate,
             bt: birthTime,
-            bp: city,
+            bp: selectedCityLng,
             bpName: cityName
         });
         setReading(rd);
@@ -858,7 +862,7 @@ function DestinyChart() {
         setShowResult(true);
         log('show', 'new_agent_result', {}, 'new_agent_detail');
         window.scrollTo({top: 0, behavior: 'smooth'});
-    }, [name, gender, birthDate, birthTime, city, cityName, log, setLogPage]);
+    }, [name, gender, birthDate, birthTime, selectedCityLng, cityName, log, setLogPage]);
 
     /* ── Back to form ── */
     const handleBack = useCallback(() => {
@@ -1579,7 +1583,6 @@ function DestinyChart() {
                 {/* ── Form Panel ── */}
                 {!showResult && (
                     <div className={styles.panel}>
-                        <div className={styles.panelTitle}>输入生辰信息</div>
                         <div className={styles.field}>
                             <label className={styles.fieldLabel}>姓名</label>
                             <input
@@ -1683,16 +1686,17 @@ function DestinyChart() {
                                 </select>
                                 <select
                                     className={styles.fieldSelect}
-                                    value={city}
+                                    value={cityName}
                                     onChange={e => {
-                                        setCity(e.target.value);
-                                        const opt = e.target.options[e.target.selectedIndex];
-                                        setCityName(opt?.text || '');
+                                        const nextCityName = e.target.value;
+                                        const nextCity = cities.find(([cName]) => cName === nextCityName);
+                                        setCityName(nextCityName);
+                                        setCity(nextCity ? String(nextCity[1]) : '');
                                     }}
                                 >
                                     <option value="">城市</option>
-                                    {cities.map(([cName, lng]) => (
-                                        <option key={cName} value={lng}>
+                                    {cities.map(([cName]) => (
+                                        <option key={cName} value={cName}>
                                             {cName}
                                         </option>
                                     ))}

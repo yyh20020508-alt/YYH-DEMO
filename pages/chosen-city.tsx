@@ -75,14 +75,18 @@ interface ProfileState {
 function Content() {
     useNewAppTheme();
     const {log, setPage: setLogPage} = useNewAppLog({pageName: 'new_agent_detail', agentName: pageData.page.agentName});
+    const defaultBirthDate = useMemo(() => {
+        const d = new Date();
+        return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+    }, []);
 
     // ── State ──
     const [screen, setScreen] = useState<Screen>('intro');
     const [profile, setProfile] = useState<ProfileState>({
-        nickname: '',
+        nickname: '未命名',
         gender: '女',
-        birthDate: '',
-        birthTime: '',
+        birthDate: defaultBirthDate,
+        birthTime: '12:00',
         birthProvince: '北京市',
         birthCity: '北京市'
     });
