@@ -113,14 +113,14 @@
   </style>
 </head>
 <body>
-<a href="/" class="portfolio-back-button" aria-label="返回作品集首页">
-  <span class="arrow" aria-hidden="true">‹</span>
-  <span>返回作品集</span>
-</a>
 <canvas id="c"></canvas>
 
 <!-- START SCREEN -->
 <div id="startScreen" class="screen">
+  <a href="/" class="portfolio-back-button" aria-label="返回作品集首页">
+    <span class="arrow" aria-hidden="true">‹</span>
+    <span>返回作品集</span>
+  </a>
   <div class="title-text">⚔️ 刀盾狗大作战</div>
   <p class="subtitle">不太聪明，但很<b>勇猛</b>的刀盾狗<br>砍树、拆楼、揍敌人——越打越强！</p>
   <ul class="tips">
@@ -136,6 +136,10 @@
 
 <!-- GAME OVER SCREEN -->
 <div id="gameOverScreen" class="screen hidden">
+  <a href="/" class="portfolio-back-button" aria-label="返回作品集首页">
+    <span class="arrow" aria-hidden="true">‹</span>
+    <span>返回作品集</span>
+  </a>
   <div class="title-text" style="font-size:clamp(22px,6vw,36px); margin-bottom:12px">💀 刀盾狗倒下了！</div>
   <div class="result-box">
     <div class="label">最终得分</div>
@@ -447,6 +451,31 @@ function activateShield() {
   p.shieldActive = true; p.shieldTimer = skillDuration(p.weaponLevel);
 }
 
+function getSwordSegment(entity) {
+  const orbit = weaponOrbit(entity.weaponLevel);
+  const blade = weaponBlade(entity.weaponLevel);
+  const ux = Math.cos(entity.weaponAngle);
+  const uy = Math.sin(entity.weaponAngle);
+  return {
+    x1: entity.x + ux * (orbit - blade * 0.2),
+    y1: entity.y + uy * (orbit - blade * 0.2),
+    x2: entity.x + ux * (orbit + blade * 0.95),
+    y2: entity.y + uy * (orbit + blade * 0.95),
+    blade
+  };
+}
+
+function pointSegDist(px, py, x1, y1, x2, y2) {
+  const dx = x2 - x1;
+  const dy = y2 - y1;
+  const len2 = dx * dx + dy * dy;
+  if (!len2) return Math.hypot(px - x1, py - y1);
+  const t = Math.max(0, Math.min(1, ((px - x1) * dx + (py - y1) * dy) / len2));
+  const cx = x1 + dx * t;
+  const cy = y1 + dy * t;
+  return Math.hypot(px - cx, py - cy);
+}
+
 window.addEventListener('keydown', e => {
   keys[e.key.toLowerCase()] = true;
   if (e.key.toLowerCase() === 'q') activateSword();
@@ -573,19 +602,16 @@ function update() {
   if (p.invincible > 0) p.invincible--;
   for (const e of G.enemies) {
     if (p.invincible > 0) continue;
+    const swordSeg = getSwordSegment(e);
+    const swordHit = pointSegDist(p.x, p.y, swordSeg.x1, swordSeg.y1, swordSeg.x2, swordSeg.y2) <= p.r + swordSeg.blade * 0.18;
     if (p.shieldActive) {
       // Shield blocks: show visual but no damage
-      const d2 = dist(e, p);
-      const eOrbit2 = weaponOrbit(e.weaponLevel), eBlade2 = weaponBlade(e.weaponLevel);
-      if (Math.abs(d2 - eOrbit2) < p.r + eBlade2 * 0.5 || d2 < e.r + p.r + eBlade2 * 0.3) {
+      if (swordHit) {
         if (G.tick % 18 === 0) spawnFloat(p.x, p.y - 35, '🛡️', '#64B5F6', 20);
       }
       continue;
     }
-    const eOrbit = weaponOrbit(e.weaponLevel);
-    const eBlade = weaponBlade(e.weaponLevel);
-    const d = dist(e, p);
-    if (Math.abs(d - eOrbit) < p.r + eBlade * 0.5 || d < e.r + p.r + eBlade * 0.3) {
+    if (swordHit) {
       p.hp -= 12 + Math.floor(e.weaponLevel * 1.5);
       p.invincible = 45;
       shakeDur = 20; shakeAmt = 5;
