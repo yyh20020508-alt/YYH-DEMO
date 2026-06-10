@@ -54,6 +54,8 @@ const swordImgs  = Array.from({length: 7}, (_, i) => { const img = new Image(); 
 const shieldImgs = Array.from({length: 7}, (_, i) => { const img = new Image(); img.src = `./盾${i+1}.png`; return img; });
 // Obstacle images: 障碍1-7
 const obstacleImgs = Array.from({length: 7}, (_, i) => { const img = new Image(); img.src = `./障碍${i+1}.png`; return img; });
+const assetImages = [playerImg, ...playerImgs, ...enemyImgs, ...swordImgs, ...shieldImgs, ...obstacleImgs];
+const assetState = { ready: false, loaded: 0, total: assetImages.length };
 // Map weapon level → 0-based image index (same tiers as enemy images)
 function getWeaponImgIdx(lvl) {
   return Math.min((lvl || 1) - 1, 6);
@@ -63,6 +65,30 @@ let keys = {};
 let joy = { active: false, bx: 0, by: 0, dx: 0, dy: 0, id: -1 };
 let running = false;
 let shakeDur = 0, shakeAmt = 0;
+
+function preloadImage(img) {
+  img.decoding = 'async';
+  return new Promise(resolve => {
+    if (img.complete && img.naturalWidth > 0) {
+      assetState.loaded += 1;
+      resolve();
+      return;
+    }
+    const done = () => {
+      img.removeEventListener('load', done);
+      img.removeEventListener('error', done);
+      assetState.loaded += 1;
+      resolve();
+    };
+    img.addEventListener('load', done, { once: true });
+    img.addEventListener('error', done, { once: true });
+  });
+}
+
+window.daodundogAssetsReady = Promise.all(assetImages.map(preloadImage)).then(() => {
+  assetState.ready = true;
+  return true;
+});
 
 // ─── AUDIO ────────────────────────────────────────────────────────────────────
 let audioCtx;
@@ -1054,12 +1080,16 @@ function startLoop() { if (!loopStarted) { loopStarted = true; loop(); } }
 
 // React dispatches these events when the user clicks start/restart buttons
 window.addEventListener('daodundog:startbtnclick', () => {
-  getAudio();
-  initGame(); running = true;
-  startLoop();
+  window.daodundogAssetsReady.then(() => {
+    getAudio();
+    initGame(); running = true;
+    startLoop();
+  });
 });
 window.addEventListener('daodundog:restartbtnclick', () => {
-  initGame(); running = true;
+  window.daodundogAssetsReady.then(() => {
+    initGame(); running = true;
+  });
 });
 
 // ─── UTILS ───────────────────────────────────────────────────────────────────
