@@ -59,7 +59,7 @@
   z-index: 1;
   max-width: 576px;
   margin: 0 auto;
-  padding: 48px 24px 56px;
+  padding: 48px 36px 56px;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -101,7 +101,7 @@
 
 .h1 {
   margin: 0 0 12px;
-  font-size: 36px;
+  font-size: 32px;
   line-height: 1.1;
   font-weight: 800;
   letter-spacing: -0.04em;
@@ -136,7 +136,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding: 20px 20px 20px 18px;
+  padding: 20px 20px;
   border-bottom: 1px solid rgba(241, 245, 249, 0.75);
   transition: background 0.3s ease;
 }
@@ -147,19 +147,6 @@
 
 .item:hover {
   background: rgba(248, 250, 252, 0.38);
-}
-
-.itemIndex {
-  flex-shrink: 0;
-  width: 24px;
-  font-size: 12px;
-  color: rgb(203 213 225);
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  transition: color 0.3s ease;
-}
-
-.item:hover .itemIndex {
-  color: rgb(96 165 250);
 }
 
 .itemIcon {
@@ -329,7 +316,7 @@
 
 @media (max-width: 640px) {
   .container {
-    padding: 24px 16px 40px;
+    padding: 24px 22px 40px;
   }
 
   .hero {
@@ -337,7 +324,7 @@
   }
 
   .h1 {
-    font-size: 30px;
+    font-size: 28px;
   }
 
   .item {
@@ -347,6 +334,39 @@
 
   .heroSite,
   .itemActionText {
+    display: none;
+  }
+}
+
+@media (min-width: 900px) {
+  :global(.portfolioMobilePreview) .container {
+    max-width: none;
+    padding: 24px 22px 40px;
+  }
+
+  :global(.portfolioMobilePreview) .hero {
+    margin-bottom: 24px;
+  }
+
+  :global(.portfolioMobilePreview) .heroMeta {
+    margin-bottom: 18px;
+  }
+
+  :global(.portfolioMobilePreview) .h1 {
+    font-size: 28px;
+  }
+
+  :global(.portfolioMobilePreview) .subtitle {
+    max-width: none;
+  }
+
+  :global(.portfolioMobilePreview) .item {
+    gap: 14px;
+    padding: 18px 16px;
+  }
+
+  :global(.portfolioMobilePreview) .heroSite,
+  :global(.portfolioMobilePreview) .itemActionText {
     display: none;
   }
 }
