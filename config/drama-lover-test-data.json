@@ -1,0 +1,507 @@
+{
+  "characters": {
+    "heWeiFang": {
+      "name": "何惟芳",
+      "drama": "《国色芳华》",
+      "actor": "杨紫 饰",
+      "gender": "female",
+      "type": 2,
+      "quote": "不把命运交给别人，才是我的盛唐开局。",
+      "personality": "盛唐搞钱大女主·清醒创业显眼包",
+      "tag": "先谋生，再谋爱，清醒到发光",
+      "portrait": "从困住自己的婚姻和处境里抽身，靠牡丹技艺和商业头脑在长安开局。不靠依附上桌，有锋芒，也有柔软，搞钱不是口号，是把人生攥回自己手里的底气。",
+      "cpId": "heSuYe",
+      "cpReason": "何苏叶/相柳，懂你野心，也接得住你的疲惫，不PUA、不拖后腿。",
+      "signature": "盛唐女商在线搞钱✨ 不认命，才开局",
+      "gradient": "linear-gradient(135deg, #f6d365, #fda085)",
+      "initial": "芳",
+      "emoji": "👸🏻"
+    },
+    "nieJiuLuo": {
+      "name": "聂九罗",
+      "drama": "《枭起青壤》",
+      "actor": "迪丽热巴 饰",
+      "gender": "female",
+      "type": 1,
+      "quote": "我不是不好惹，我是只为值得的人出刀。",
+      "personality": "疯刀拽姐·暗夜猎手恋爱版",
+      "tag": "飒到骨子里，爱得干脆，不矫情不内耗",
+      "portrait": "代号「疯刀」，利落、机敏、带点危险感。她不是软弱型女主，爱恨都很分明，能保护别人，也不会委屈自己。",
+      "cpId": "jinChao",
+      "cpReason": "靳朝/谢征，接住你的锋芒，陪你一起硬刚世界。",
+      "signature": "疯刀拽姐上线🤫 只为值得的人出刀",
+      "gradient": "linear-gradient(135deg, #a18cd1, #fbc2eb)",
+      "initial": "九",
+      "emoji": "🦸‍♀️"
+    },
+    "xuYan": {
+      "name": "许妍",
+      "drama": "《许我耀眼》",
+      "actor": "赵露思 饰",
+      "gender": "female",
+      "type": 5,
+      "quote": "我可以不完美，但我一定要往上走。",
+      "personality": "野心清醒黑莲花·逆袭型耀眼女主",
+      "tag": "目标感拉满，清醒现实，爱也要势均力敌",
+      "portrait": "出身普通却不甘平庸，知道世界的规则，也敢用自己的方式往上爬。她不完美、不纯白，但足够鲜活，爱得现实，也活得有野心。",
+      "cpId": "xieZheng",
+      "cpReason": "谢征/桑延，一个护你逆风翻盘，一个陪你嘴硬心软。",
+      "signature": "黑莲花也要耀眼✨ 不完美，但要赢",
+      "gradient": "linear-gradient(135deg, #f093fb, #f5576c)",
+      "initial": "妍",
+      "emoji": "🌹"
+    },
+    "zhenHuan": {
+      "name": "甄嬛",
+      "drama": "《甄嬛传》",
+      "actor": "孙俪 饰",
+      "gender": "female",
+      "type": 6,
+      "quote": "真心可以给，退路必须留。",
+      "personality": "腹黑清醒大女主·反恋爱脑天花板",
+      "tag": "爱时真心，醒时狠心，拿得起放得下",
+      "portrait": "从真情少女走到清醒赢家，见过偏爱，也见过背叛。她最厉害的地方不是不动情，而是动情之后仍然能把自己救回来。",
+      "cpId": "xiangLiu",
+      "cpReason": "相柳/何苏叶（克制守护型），一个懂隐忍，一个给安稳，适合强强对弈。",
+      "signature": "臣妾做不到恋爱脑👑 清醒才是底牌",
+      "gradient": "linear-gradient(135deg, #ff4e50, #f9d423)",
+      "initial": "嬛",
+      "emoji": "👑"
+    },
+    "chengShaoShang": {
+      "name": "程少商",
+      "drama": "《星汉灿烂》",
+      "actor": "赵露思 饰",
+      "gender": "female",
+      "type": 4,
+      "quote": "我可以爱你，但不能没了自己。",
+      "personality": "毒舌机灵女·反PUA小能手",
+      "tag": "嘴毒心善，清醒独立，不仰人鼻息",
+      "portrait": "「嫋嫋」本嫋，机灵、倔强、嘴上不饶人，心里却有自己的分寸。她可以心动，但不会被爱情完全牵着走，越成长越知道自己要什么。",
+      "cpId": "xieZheng",
+      "cpReason": "桑延/陈路周，能接住你的毒舌，也能陪你一起变成熟。",
+      "signature": "嫋嫋在线反PUA✨ 爱可以，失去自己不行",
+      "gradient": "linear-gradient(135deg, #ffecd2, #fcb69f)",
+      "initial": "商",
+      "emoji": "💫"
+    },
+    "fanYun": {
+      "name": "范云",
+      "drama": "《云秀行》",
+      "actor": "李一桐 饰",
+      "gender": "female",
+      "type": 7,
+      "quote": "规矩困不住我，朝堂也该有我的名字。",
+      "personality": "职场系大女主·古代搞编制冲业绩达人",
+      "tag": "打破桎梏，敢硬刚，恋爱只是副业",
+      "portrait": "把入仕当主线，把理想当KPI。她不是等人拯救的女主，而是要亲手改规则的人，清醒、坚定、有执行力。",
+      "cpId": "heSuYe",
+      "cpReason": "何苏叶/陈路周，一个做后盾，一个陪成长，适合事业批女主。",
+      "signature": "搞编制冲业绩📈 规矩之外，也有我的路",
+      "gradient": "linear-gradient(135deg, #fbc2eb, #e066a8)",
+      "initial": "云",
+      "emoji": "📚"
+    },
+    "xuZhi": {
+      "name": "徐栀",
+      "drama": "《陷入我们的热恋》",
+      "actor": "刘浩存 饰",
+      "gender": "female",
+      "type": 3,
+      "quote": "好的喜欢，是一起发光，不是谁拖住谁。",
+      "personality": "清醒独立·事业型青春女主",
+      "tag": "先追梦，再心动，成长型恋爱选手",
+      "portrait": "青春感里带着目标感，喜欢可以很甜，但人生不能只剩恋爱。她懂心动，也懂成长，最适合那种彼此照亮、一起往前走的关系。",
+      "cpId": "chenLuZhou",
+      "cpReason": "陈路周/李雾，一个热烈拉扯，一个直球守护。",
+      "signature": "先追梦再恋爱✨ 喜欢你，也不耽误我发光",
+      "gradient": "linear-gradient(135deg, #fde8f0, #f5a3c4)",
+      "initial": "栀",
+      "emoji": "🌼"
+    },
+    "wenYiFan": {
+      "name": "温以凡",
+      "drama": "《难哄》",
+      "actor": "章若楠 饰",
+      "gender": "female",
+      "type": 0,
+      "quote": "我可以温柔，但不会一直退让。",
+      "personality": "温柔清醒·创伤自愈型白月光",
+      "tag": "温柔有底线，清醒不懦弱，爱得克制",
+      "portrait": "她不是攻击性很强的人，却有自己的边界。经历过伤害，也仍然保有温柔，爱得慢热、克制、谨慎，但一旦确认就很真诚。",
+      "cpId": "sangYan",
+      "cpReason": "桑延/李雾，一个嘴硬长情，一个直球纯粹，都能给你安全感。",
+      "signature": "温柔有底线🌙 慢慢来，也会抵达",
+      "gradient": "linear-gradient(135deg, #e0c3fc, #8ec5fc)",
+      "initial": "凡",
+      "emoji": "🌙"
+    },
+    "xiangLiu": {
+      "name": "相柳",
+      "drama": "《长相思》",
+      "actor": "檀健次 饰",
+      "gender": "male",
+      "type": 0,
+      "quote": "我不说守护，但我会一直在。",
+      "personality": "隐忍深情·双身份白月光意难平",
+      "tag": "嘴硬到极致，深情藏到底",
+      "portrait": "相柳不是「双重人格」，更准确是相柳/防风邶的双身份设定。他克制、隐忍、不越界，把偏爱藏在一次次选择里，属于越品越虐的意难平类型。",
+      "cpId": "wenYiFan",
+      "cpReason": "温以凡/甄嬛，一个温柔克制，一个清醒强大，都懂沉默里的深情。",
+      "signature": "深情不必声张❤️ 我在，就够了",
+      "gradient": "linear-gradient(135deg, #667eea, #764ba2)",
+      "initial": "柳",
+      "emoji": "🌊"
+    },
+    "sangYan": {
+      "name": "桑延",
+      "drama": "《难哄》",
+      "actor": "白敬亭 饰",
+      "gender": "male",
+      "type": 4,
+      "quote": "嘴硬是本能，喜欢你也是。",
+      "personality": "毒舌傲娇·九年暗恋忠犬天花板",
+      "tag": "嘴比心硬，暗恋多年，笨拙又珍视",
+      "portrait": "表面高冷、嘴欠、欠揍，实际上长情又护短。喜欢不会天天挂在嘴边，但会藏在行动里，是那种越熟越上头的嘴硬深情型。",
+      "cpId": "wenYiFan",
+      "cpReason": "温以凡/程少商，互怼互宠，双向治愈。",
+      "signature": "嘴硬心软💫 喜欢你这件事，没改过",
+      "gradient": "linear-gradient(135deg, #ffd3c4, #ff7f7f)",
+      "initial": "延",
+      "emoji": "😼"
+    },
+    "liWu": {
+      "name": "李雾",
+      "drama": "《狙击蝴蝶》",
+      "actor": "周柯宇 饰",
+      "gender": "male",
+      "type": 3,
+      "quote": "我不是一时心动，是一直只看向你。",
+      "personality": "年下直球·极致专情守护者",
+      "tag": "姐弟恋天花板，直球深情，甜度超标",
+      "portrait": "少年感很强，真诚、专一、直球，不太会玩套路，但会把喜欢表达得很明确。适合需要被坚定选择的人。",
+      "cpId": "xuZhi",
+      "cpReason": "温以凡/徐栀，一个需要安全感，一个适合被真诚照亮。",
+      "signature": "年下小狗在线守护🐶 眼里只有你",
+      "gradient": "linear-gradient(135deg, #a8edea, #fed6e3)",
+      "initial": "雾",
+      "emoji": "🐶"
+    },
+    "heSuYe": {
+      "name": "何苏叶",
+      "drama": "《爱你》",
+      "actor": "张凌赫 饰",
+      "gender": "male",
+      "type": 2,
+      "quote": "温柔不是退让，是我愿意慢慢靠近你。",
+      "personality": "温润禁欲·中医系暖男天花板",
+      "tag": "润物细无声，温柔又靠谱，理想型男友",
+      "portrait": "温润、克制、可靠，情绪稳定感很强。不是轰轰烈烈型，而是慢慢靠近、细水长流、让人越来越安心的类型。",
+      "cpId": "heWeiFang",
+      "cpReason": "何惟芳/范云，做你后盾，陪你搞事业，不抢你的光。",
+      "signature": "中医暖男在线营业🥣 温柔是长期主义",
+      "gradient": "linear-gradient(135deg, #f7a8bb, #d94f7a)",
+      "initial": "叶",
+      "emoji": "🌿"
+    },
+    "jinChao": {
+      "name": "靳朝",
+      "drama": "《双轨》",
+      "actor": "何与 饰",
+      "gender": "male",
+      "type": 1,
+      "quote": "我身上有风霜，但护你这件事很干净。",
+      "personality": "野性修车工·拳场赛车系守护者",
+      "tag": "危险感拉满，冷感外表，深情内核",
+      "portrait": "靳朝不适合写「霸总」，他更像在复杂环境里长出来的野性守护型。外表冷、经历硬，带点危险感，但内核是护短和深情。",
+      "cpId": "nieJiuLuo",
+      "cpReason": "聂九罗/许妍，一个够野，一个够清醒，适合强强拉扯。",
+      "signature": "野性糙汉护短中💪 我的偏爱，不讲道理",
+      "gradient": "linear-gradient(135deg, #434343, #000000)",
+      "initial": "朝",
+      "emoji": "🔥"
+    },
+    "chenLuZhou": {
+      "name": "陈路周",
+      "drama": "《陷入我们的热恋》",
+      "actor": "王安宇 饰",
+      "gender": "male",
+      "type": 7,
+      "quote": "我以为我很会赢，后来才知道是栽给你了。",
+      "personality": "傲娇拽王·自我攻略型学霸",
+      "tag": "痞帅傲娇，自我攻略，少年感拉满",
+      "portrait": "表面拽，心里戏多；嘴上不一定服软，行动却很诚实。适合青春热恋里的高甜拉扯，越上头越藏不住。",
+      "cpId": "xuZhi",
+      "cpReason": "徐栀/程少商，互怼成长，双向奔赴。",
+      "signature": "傲娇拽王在线上头😎 这局我栽了",
+      "gradient": "linear-gradient(135deg, #a78bd4, #7b52ab)",
+      "initial": "周",
+      "emoji": "😎"
+    },
+    "liZan": {
+      "name": "李瓒",
+      "drama": "《白色橄榄树》",
+      "actor": "陈哲远 饰",
+      "gender": "male",
+      "type": 6,
+      "quote": "我走过战火，也想把温柔留给你。",
+      "personality": "破碎硬汉·战地爆破工程师",
+      "tag": "破碎感与责任感并存，温柔到心疼",
+      "portrait": "李瓒更准确是华裔爆破工程师/排雷志愿者，不是单纯「战士」。他有硬朗的一面，也有很深的责任感和创伤感，爱得克制又珍重。",
+      "cpId": "wenYiFan",
+      "cpReason": "温以凡/徐栀，一个治愈伤口，一个陪你重新相信生活。",
+      "signature": "战地温柔不熄🕊️ 爱是废墟里的白色橄榄树",
+      "gradient": "linear-gradient(135deg, #c49a6c, #7d4e2a)",
+      "initial": "瓒",
+      "emoji": "🪖"
+    },
+    "xieZheng": {
+      "name": "谢征",
+      "drama": "《逐玉》",
+      "actor": "张凌赫 饰",
+      "gender": "male",
+      "type": 5,
+      "quote": "我可以隐姓埋名，但护你从不含糊。",
+      "personality": "假入赘书生·隐忍复仇武安侯",
+      "tag": "表面落魄，实则狠稳，反差感拉满",
+      "portrait": "他不是「从赘婿逆袭成战神」，而是表面体弱落魄、入赘樊家，实则背负血仇的武安侯。适合写成「隐藏身份+隐忍复仇+深情护短」的反差型男主。",
+      "cpId": "nieJiuLuo",
+      "cpReason": "聂九罗/许妍，一个敢出刀，一个敢翻盘，适合疯批互宠。",
+      "signature": "落魄书生是假象🔪 护你周全是真心",
+      "gradient": "linear-gradient(135deg, #f5576c, #ff4e50)",
+      "initial": "征",
+      "emoji": "⚔️"
+    }
+  },
+  "typeCharMap": {
+    "0": {
+      "male": "xiangLiu",
+      "female": "wenYiFan"
+    },
+    "1": {
+      "male": "jinChao",
+      "female": "nieJiuLuo"
+    },
+    "2": {
+      "male": "heSuYe",
+      "female": "heWeiFang"
+    },
+    "3": {
+      "male": "liWu",
+      "female": "xuZhi"
+    },
+    "4": {
+      "male": "sangYan",
+      "female": "chengShaoShang"
+    },
+    "5": {
+      "male": "xieZheng",
+      "female": "xuYan"
+    },
+    "6": {
+      "male": "liZan",
+      "female": "zhenHuan"
+    },
+    "7": {
+      "male": "chenLuZhou",
+      "female": "fanYun"
+    }
+  },
+  "quotesList": [
+    {
+      "charId": "heWeiFang",
+      "text": "不把命运交给别人，才是我的盛唐开局。"
+    },
+    {
+      "charId": "nieJiuLuo",
+      "text": "我不是不好惹，我是只为值得的人出刀。"
+    },
+    {
+      "charId": "xuYan",
+      "text": "我可以不完美，但我一定要往上走。"
+    },
+    {
+      "charId": "zhenHuan",
+      "text": "真心可以给，退路必须留。"
+    },
+    {
+      "charId": "chengShaoShang",
+      "text": "我可以爱你，但不能没了自己。"
+    },
+    {
+      "charId": "fanYun",
+      "text": "规矩困不住我，朝堂也该有我的名字。"
+    },
+    {
+      "charId": "xuZhi",
+      "text": "好的喜欢，是一起发光，不是谁拖住谁。"
+    },
+    {
+      "charId": "wenYiFan",
+      "text": "我可以温柔，但不会一直退让。"
+    },
+    {
+      "charId": "xiangLiu",
+      "text": "我不说守护，但我会一直在。"
+    },
+    {
+      "charId": "sangYan",
+      "text": "嘴硬是本能，喜欢你也是。"
+    },
+    {
+      "charId": "liWu",
+      "text": "我不是一时心动，是一直只看向你。"
+    },
+    {
+      "charId": "heSuYe",
+      "text": "温柔不是退让，是我愿意慢慢靠近你。"
+    },
+    {
+      "charId": "jinChao",
+      "text": "我身上有风霜，但护你这件事很干净。"
+    },
+    {
+      "charId": "chenLuZhou",
+      "text": "我以为我很会赢，后来才知道是栽给你了。"
+    },
+    {
+      "charId": "liZan",
+      "text": "我走过战火，也想把温柔留给你。"
+    },
+    {
+      "charId": "xieZheng",
+      "text": "我可以隐姓埋名，但护你从不含糊。"
+    }
+  ],
+  "questions": [
+    {
+      "scene": "深夜 23:48",
+      "q": "对象已读不回半小时，你CPU已烧到冒烟，真实状态是？",
+      "opts": [
+        "表面淡定装死，内心已经脑补到大结局了",
+        "直接开怒：说！是不是外面有狗了",
+        "失落3秒后打开工作群，搞钱不香吗",
+        "小心翼翼发个表情包试探，卑微本卑"
+      ],
+      "types": [0, 1, 2, 3]
+    },
+    {
+      "scene": "傍晚 18:22",
+      "q": "吵架吵到天崩地裂，对方突然开启沉默模式，你？",
+      "opts": [
+        "嘴硬输出到底，就算天塌了也不先低头",
+        "秒怂心软，偷偷找台阶，不忍心他难过",
+        "越沉默我越上头，疯批属性直接拉满",
+        "行，冷静，我先让你一把"
+      ],
+      "types": [4, 2, 5, 6]
+    },
+    {
+      "scene": "周末 15:30",
+      "q": "对象花大价钱买了个丑到逆天的礼物送你，你？",
+      "opts": [
+        "笑容逐渐消失：谢谢…这审美我真的会谢",
+        "当面吐槽：这钱还不如给我充会员呢",
+        "真心开心！他送的垃圾袋我都当宝贝",
+        "微笑收下，默默放到永远不会打开的角落"
+      ],
+      "types": [7, 4, 3, 2]
+    },
+    {
+      "scene": "深夜 00:17",
+      "q": "看到对象和异性聊天记录有个小心心，你吃醋了但嘴硬，会？",
+      "opts": [
+        "阴阳怪气：哦～聊得挺开心嘛",
+        "冷脸写满不高兴，但嘴上说「没事」",
+        "表面没事，内心小本本已经记上了",
+        "自己消化掉，假装什么都没看到"
+      ],
+      "types": [4, 5, 6, 0]
+    },
+    {
+      "scene": "午后 14:27",
+      "q": "暧昧期对方今天秒回明天消失，忽冷忽热，你？",
+      "opts": [
+        "立刻止损撤退，这世界又不是只有他",
+        "忍不住凑上去，笨拙地试探他心意",
+        "直接摊牌：你到底什么意思，给个痛快话",
+        "不急不躁默默等，温柔坚守不放弃"
+      ],
+      "types": [6, 7, 1, 3]
+    },
+    {
+      "scene": "上午 11:06",
+      "q": "对象在群里发你素颜丑照并@全体成员，你？",
+      "opts": [
+        "反手翻出他更丑的照片，互相伤害！",
+        "私聊警告：三秒内删掉，否则你完了",
+        "有点尴尬但笑了，算了他开心就好",
+        "无所谓，甚至亲自下场评论补刀"
+      ],
+      "types": [7, 1, 3, 2]
+    },
+    {
+      "scene": "清晨 08:19",
+      "q": "闺密/兄弟灵魂拷问：你谈恋爱到底图啥？你脱口而出？",
+      "opts": [
+        "图他嘴贱但关键时刻只护着我",
+        "图在一起舒服不累，情绪稳定不内耗",
+        "图他眼里只有我，占有欲给我安全感",
+        "图各自独立互不打扰，先搞钱再说"
+      ],
+      "types": [4, 0, 5, 6]
+    },
+    {
+      "scene": "傍晚 19:35",
+      "q": "第一次约会，饭吃完两人大眼瞪小眼，手机都快抠烂了，你？",
+      "opts": [
+        "低头玩手机，顺其自然吧，不尬聊",
+        "疯狂找话题输出，绝不允许空气安静",
+        "笑着打破沉默：这气氛怎么跟考试似的",
+        "安静待着也挺好的，有什么可尴尬的"
+      ],
+      "types": [0, 3, 7, 2]
+    },
+    {
+      "scene": "凌晨 01:33",
+      "q": "恋爱里最让你瞬间黑脸想原地爆炸的是？",
+      "opts": [
+        "消息已读不回、敷衍回复，当我透明？",
+        "和异性称兄道弟暧昧不清，谁受得了",
+        "说好的事情又反悔，画的饼全是假的",
+        "管东管西连朋友圈都要审查，窒息了"
+      ],
+      "types": [4, 5, 1, 6]
+    },
+    {
+      "scene": "周日 10:48",
+      "q": "如果你的恋爱风格是一个热梗，你觉得你是哪个？",
+      "opts": [
+        "嘴硬心软代言人：吵完架自己先偷偷妥协",
+        "纯爱战神本神：只走心不套路，倒地就倒地",
+        "疯批限定款：只对你一人专一，占有欲爆表",
+        "反CPU达人：清醒搞钱，爱情只是附属品"
+      ],
+      "types": [4, 3, 5, 6]
+    }
+  ],
+  "optLabels": ["A", "B", "C", "D"],
+  "page": {
+    "title": "剧系恋人测试",
+    "topBar": {
+      "title": "",
+      "showBack": true,
+      "showShare": true,
+      "iconColor": "#000000",
+      "bgColor": "transparent",
+      "darkIconColor": "#ffffff",
+      "darkBgColor": "transparent"
+    },
+    "agentName": "剧系恋人测试"
+  },
+  "share": {
+    "title": "剧系恋人测试",
+    "description": "你撞脸哪款热剧角色？天命CP是谁？",
+    "url": ""
+  }
+}
