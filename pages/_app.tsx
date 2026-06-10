@@ -4,9 +4,11 @@ import PortfolioBackButton from "@/components/PortfolioBackButton";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <>
+    <div className="portfolioShell">
       <PortfolioBackButton />
-      <Component {...pageProps} />
-    </>
+      <div className="portfolioViewport">
+        <Component {...pageProps} />
+      </div>
+    </div>
   );
 }
