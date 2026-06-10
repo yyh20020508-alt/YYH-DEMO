@@ -114,7 +114,7 @@ export default function Home() {
             </div>
             <h1 className={styles.h1}>姚岳含的作品集</h1>
             <p className={styles.subtitle}>
-              这里收录了我做过的测试、小游戏和趣味工具页面，点击即可进入体验。
+              这里收录了我做过的测试、小游戏和趣味工具页面，点击即可进入体验。<strong>建议优先使用手机浏览，网页端已调整为手机模拟展示效果。</strong>
             </p>
           </section>
 
@@ -122,7 +122,6 @@ export default function Home() {
             <div className={styles.listCard}>
               {projects.map((project) => (
                 <Link key={project.href} href={project.href} className={styles.item}>
-                  <span className={styles.itemIndex}>{project.index}</span>
                   <span className={`${styles.itemIcon} ${project.tone}`} aria-hidden="true">
                     <project.icon />
                   </span>
