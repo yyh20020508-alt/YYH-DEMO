@@ -408,12 +408,12 @@ function spawnEnemy() {
 
 // ─── INPUT ─────────────────────────────────────────────────────────────────────
 // Skill button screen positions — vertical stack on the right
-function swordBtnPos()  { return { x: window.innerWidth - 78, y: window.innerHeight - 165 - safeBottom, r: 40 }; }
-function shieldBtnPos() { return { x: window.innerWidth - 78, y: window.innerHeight - 255 - safeBottom, r: 40 }; }
+function swordBtnPos()  { return { x: window.innerWidth - 84, y: window.innerHeight - 150 - safeBottom, r: 42 }; }
+function shieldBtnPos() { return { x: window.innerWidth - 84, y: window.innerHeight - 258 - safeBottom, r: 42 }; }
 function getSkillHitTarget(x, y) {
   const sp = swordBtnPos();
   const sh = shieldBtnPos();
-  const hitExtra = 22;
+  const hitExtra = 18;
   const swordDist = Math.hypot(x - sp.x, y - sp.y);
   const shieldDist = Math.hypot(x - sh.x, y - sh.y);
   const candidates = [];
@@ -625,16 +625,14 @@ function update() {
   // ---- Enemy AI ----
   for (const e of G.enemies) {
     const d = dist(e, p);
-    // All enemies chase the player when in range — no fleeing
-    if (d < 650)       e.state = 'chase';
-    else if (d > 750)  e.state = 'roam';
+    e.state = 'chase';
 
     let tx = 0, ty = 0;
     const spd = 1.6 + e.weaponLevel * 0.12;
     if (e.state === 'chase') {
       // Each enemy approaches from a unique angle — spreads them around player
       if (e.approachAng === undefined) e.approachAng = Math.random() * Math.PI * 2;
-      const spreadR = 60; // orbit radius around player center
+      const spreadR = d > 520 ? 24 : 60; // farther away -> run more directly at player
       const tgtX = p.x + Math.cos(e.approachAng) * spreadR;
       const tgtY = p.y + Math.sin(e.approachAng) * spreadR;
       tx = tgtX - e.x; ty = tgtY - e.y;
@@ -648,7 +646,8 @@ function update() {
     }
     const len = Math.hypot(tx, ty);
     if (len > 1) {
-      e.vx = (tx / len) * spd; e.vy = (ty / len) * spd;
+      const chaseBoost = d > 900 ? 1.28 : d > 650 ? 1.14 : 1;
+      e.vx = (tx / len) * spd * chaseBoost; e.vy = (ty / len) * spd * chaseBoost;
       if (e.vx > 0.1) e.facing = 1; else if (e.vx < -0.1) e.facing = -1;
     } else { e.vx = 0; e.vy = 0; }
     e.x = clamp(e.x + e.vx, e.r, MAP_W - e.r);
@@ -1162,9 +1161,9 @@ function drawHUD(W, H) {
   const hpColor = p.hp > p.maxHp * 0.5 ? '#4CAF50' : p.hp > p.maxHp * 0.25 ? '#FF9800' : '#F44336';
   roundRect(ctx, 18, st + 2, hpW, 18, 5, hpColor);
   ctx.strokeStyle = 'rgba(255,255,255,0.3)'; ctx.lineWidth = 1; strokeRoundRect(ctx, 16, st, 170, 22, 6);
-  ctx.fillStyle = 'white'; ctx.font = 'bold 11px sans-serif'; ctx.textAlign = 'center';
+  ctx.fillStyle = 'white'; ctx.font = 'bold 11px sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
   ctx.shadowColor='rgba(0,0,0,0.8)'; ctx.shadowBlur=3;
-  ctx.fillText(`❤️ ${Math.max(0,p.hp)} / ${p.maxHp}`, 101, st + 15);
+  ctx.fillText(`❤️ ${Math.max(0,p.hp)} / ${p.maxHp}`, 16 + 170 / 2, st + 22 / 2 + 1);
   ctx.shadowBlur = 0;
 
   // XP bar
@@ -1172,10 +1171,11 @@ function drawHUD(W, H) {
   const xpW = 166 * p.xp / p.xpNext;
   roundRect(ctx, 18, st + 28, xpW, 10, 3, '#FFD700');
   ctx.strokeStyle = 'rgba(255,215,0,0.4)'; strokeRoundRect(ctx, 16, st + 26, 170, 14, 4);
-  ctx.fillStyle = 'white'; ctx.font = '10px sans-serif'; ctx.textAlign = 'center';
+  ctx.fillStyle = 'white'; ctx.font = '10px sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
   ctx.shadowColor='rgba(0,0,0,0.8)'; ctx.shadowBlur=2;
-  ctx.fillText(`⚔️ Lv.${p.weaponLevel}  ${p.xp}/${p.xpNext} XP`, 101, st + 37);
+  ctx.fillText(`⚔️ Lv.${p.weaponLevel}  ${p.xp}/${p.xpNext} XP`, 16 + 170 / 2, st + 26 + 14 / 2 + 1);
   ctx.shadowBlur = 0;
+  ctx.textBaseline = 'alphabetic';
 
   // Score
   ctx.fillStyle = 'white'; ctx.font = 'bold 18px sans-serif'; ctx.textAlign = 'right';
