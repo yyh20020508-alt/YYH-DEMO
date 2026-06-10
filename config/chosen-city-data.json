@@ -1,0 +1,21 @@
+{
+  "page": {
+    "title": "天选之城",
+    "topBar": {
+      "title": "",
+      "showBack": true,
+      "showShare": true,
+      "iconColor": "#000000",
+      "bgColor": "transparent",
+      "darkIconColor": "#ffffff",
+      "darkBgColor": "transparent"
+    },
+    "agentName": "天选之城"
+  },
+  "share": {
+    "title": "测测你的天选之城是哪座？",
+    "description": "基于本命星盘+城市六维画像匹配，看看哪座城市和你的频率最同拍",
+    "imageUrl": "/images/share/chosen-city-share.png",
+    "url": ""
+  }
+}
