@@ -108,6 +108,10 @@
     animation: heroFadeUp .5s ease both;
 }
 
+.eyebrowBelow {
+    margin-top: 10px;
+}
+
 .heroTitle {
     margin: 10px 0 0;
     font-size: 46px;
@@ -402,7 +406,7 @@
     background: transparent;
     border: none;
     cursor: crosshair;
-    touch-action: none;
+    touch-action: pan-x pinch-zoom;
 }
 
 .zoomHint {
