@@ -56,7 +56,7 @@ function ds(scores: DimScores): Record<string, number> {
 
 /* ══════ Chart config ══════ */
 const DEFAULT_GAP = 11;
-const MIN_GAP = 6;
+const MIN_GAP = 3;
 const MAX_GAP = 18;
 const CH = 280;
 const PAD = {top: 30, right: 18, bottom: 34, left: 34};
@@ -463,7 +463,8 @@ function DestinyChart() {
     /* ── Chart width calc ── */
     const chartW = useCallback(
         (len: number) => {
-            return Math.max(360, PAD.left + PAD.right + Math.max(1, len - 1) * pointGap);
+            const minVisibleWidth = scrollRef.current?.clientWidth || 320;
+            return Math.max(minVisibleWidth, PAD.left + PAD.right + Math.max(1, len - 1) * pointGap);
         },
         [pointGap]
     );
