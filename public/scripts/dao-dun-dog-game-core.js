@@ -239,8 +239,37 @@ function spawnEnemy() {
 
 // ─── INPUT ─────────────────────────────────────────────────────────────────────
 // Skill button screen positions — vertical stack on the right
-function swordBtnPos()  { return { x: window.innerWidth - 68, y: window.innerHeight - 165 - safeBottom, r: 38 }; }
-function shieldBtnPos() { return { x: window.innerWidth - 68, y: window.innerHeight - 255 - safeBottom, r: 38 }; }
+function swordBtnPos()  { return { x: window.innerWidth - 78, y: window.innerHeight - 165 - safeBottom, r: 40 }; }
+function shieldBtnPos() { return { x: window.innerWidth - 78, y: window.innerHeight - 255 - safeBottom, r: 40 }; }
+function getSkillHitTarget(x, y) {
+  const sp = swordBtnPos();
+  const sh = shieldBtnPos();
+  const hitExtra = 22;
+  const swordDist = Math.hypot(x - sp.x, y - sp.y);
+  const shieldDist = Math.hypot(x - sh.x, y - sh.y);
+  const candidates = [];
+  if (swordDist <= sp.r + hitExtra) candidates.push({ key: 'sword', dist: swordDist });
+  if (shieldDist <= sh.r + hitExtra) candidates.push({ key: 'shield', dist: shieldDist });
+  if (!candidates.length) return null;
+  candidates.sort((a, b) => a.dist - b.dist);
+  return candidates[0].key;
+}
+
+function drawCenteredEmoji(ctx, label, cx, cy, size) {
+  ctx.save();
+  ctx.font = `${size}px "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif`;
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'alphabetic';
+  const metrics = ctx.measureText(label);
+  const left = metrics.actualBoundingBoxLeft || 0;
+  const right = metrics.actualBoundingBoxRight || size * 0.5;
+  const ascent = metrics.actualBoundingBoxAscent || size * 0.45;
+  const descent = metrics.actualBoundingBoxDescent || size * 0.2;
+  const drawX = cx - (left + right) / 2;
+  const drawY = cy + (ascent - descent) / 2;
+  ctx.fillText(label, drawX, drawY);
+  ctx.restore();
+}
 
 function activateSword() {
   const p = G && G.player; if (!p) return;
@@ -264,11 +293,11 @@ window.addEventListener('keyup',   e => { keys[e.key.toLowerCase()] = false; });
 canvas.addEventListener('touchstart', e => {
   e.preventDefault();
   for (const t of e.changedTouches) {
-    const sp = swordBtnPos(), sh = shieldBtnPos();
-    if (Math.hypot(t.clientX - sp.x, t.clientY - sp.y) < sp.r + 12) {
+    const skillTarget = getSkillHitTarget(t.clientX, t.clientY);
+    if (skillTarget === 'sword') {
       activateSword(); continue;
     }
-    if (Math.hypot(t.clientX - sh.x, t.clientY - sh.y) < sh.r + 12) {
+    if (skillTarget === 'shield') {
       activateShield(); continue;
     }
     if (!joy.active && t.clientX < window.innerWidth * 0.55) {
@@ -1021,12 +1050,7 @@ function drawHUD(W, H) {
 
     // Icon
     ctx.globalAlpha = (cdTimer > 0 && !active) ? 0.4 : 1;
-    ctx.font = `${r * 0.76}px sans-serif`;
-    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-    const iconOffsetX = label === '🛡️' ? -1 : 0;
-    const iconOffsetY = label === '⚔️' ? 3 : 2;
-    ctx.fillText(label, bx3 + iconOffsetX, by3 + iconOffsetY);
-    ctx.textBaseline = 'alphabetic';
+    drawCenteredEmoji(ctx, label, bx3, by3, r * 0.74);
     ctx.globalAlpha = 1;
 
     // Cooldown seconds remaining
