@@ -1190,9 +1190,11 @@ function drawHUD(W, H) {
 
     // Icon
     ctx.globalAlpha = (cdTimer > 0 && !active) ? 0.4 : 1;
-    ctx.font = `${r * 0.82}px sans-serif`;
+    ctx.font = `${r * 0.76}px sans-serif`;
     ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-    ctx.fillText(label, bx3, by3 + 1);
+    const iconOffsetX = label === '🛡️' ? -1 : 0;
+    const iconOffsetY = label === '⚔️' ? 3 : 2;
+    ctx.fillText(label, bx3 + iconOffsetX, by3 + iconOffsetY);
     ctx.textBaseline = 'alphabetic';
     ctx.globalAlpha = 1;
 
