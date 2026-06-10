@@ -14,7 +14,7 @@
     position: relative;
     color: #1a1a2a;
     box-sizing: border-box;
-    padding-top: calc(64px + env(safe-area-inset-top));
+    padding-top: calc(52px + env(safe-area-inset-top));
     padding-bottom: calc(64px + env(safe-area-inset-bottom));
     font-family: 'Ma Shan Zheng', 'STKaiti', 'KaiTi', 'STSong', 'SimSun', serif;
     isolation: isolate;
