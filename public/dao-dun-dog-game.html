@@ -94,6 +94,11 @@
       letter-spacing: 2px;
     }
     .btn:active { transform: scale(0.96); box-shadow: 0 2px 8px rgba(255,200,0,0.3); }
+    .btn[disabled] {
+      opacity: 0.7;
+      cursor: wait;
+      box-shadow: 0 2px 10px rgba(255,200,0,0.18);
+    }
 
     #gameOverScreen .result-box {
       background: rgba(255,255,255,0.07);
@@ -200,6 +205,8 @@ const swordImgs  = Array.from({length: 7}, (_, i) => { const img = new Image(); 
 const shieldImgs = Array.from({length: 7}, (_, i) => { const img = new Image(); img.src = `./盾${i+1}.png`; return img; });
 // Obstacle images: 障碍1-7
 const obstacleImgs = Array.from({length: 7}, (_, i) => { const img = new Image(); img.src = `./障碍${i+1}.png`; return img; });
+const assetImages = [playerImg, ...playerImgs, ...enemyImgs, ...swordImgs, ...shieldImgs, ...obstacleImgs];
+const assetState = { ready: false, loaded: 0, total: assetImages.length };
 // Map weapon level → 0-based image index (same tiers as enemy images)
 function getWeaponImgIdx(lvl) {
   return Math.min((lvl || 1) - 1, 6);
@@ -209,6 +216,44 @@ let keys = {};
 let joy = { active: false, bx: 0, by: 0, dx: 0, dy: 0, id: -1 };
 let running = false;
 let shakeDur = 0, shakeAmt = 0;
+const startBtn = document.getElementById('startBtn');
+
+function updateStartBtnLoading() {
+  const pct = Math.max(0, Math.min(100, Math.round((assetState.loaded / assetState.total) * 100)));
+  startBtn.textContent = assetState.ready ? '开始战斗！' : `资源加载中 ${pct}%`;
+  startBtn.disabled = !assetState.ready;
+}
+
+function preloadImage(img) {
+  img.decoding = 'async';
+  return new Promise(resolve => {
+    if (img.complete && img.naturalWidth > 0) {
+      assetState.loaded += 1;
+      updateStartBtnLoading();
+      resolve();
+      return;
+    }
+    const done = () => {
+      img.removeEventListener('load', done);
+      img.removeEventListener('error', done);
+      assetState.loaded += 1;
+      updateStartBtnLoading();
+      resolve();
+    };
+    img.addEventListener('load', done, { once: true });
+    img.addEventListener('error', done, { once: true });
+  });
+}
+
+async function preloadAssets() {
+  updateStartBtnLoading();
+  await Promise.all(assetImages.map(preloadImage));
+  assetState.ready = true;
+  updateStartBtnLoading();
+}
+
+updateStartBtnLoading();
+preloadAssets();
 
 // ─── AUDIO ────────────────────────────────────────────────────────────────────
 let audioCtx;
@@ -1202,6 +1247,7 @@ let loopStarted = false;
 function startLoop() { if (!loopStarted) { loopStarted = true; loop(); } }
 
 document.getElementById('startBtn').addEventListener('click', () => {
+  if (!assetState.ready) return;
   getAudio(); // Unlock audio context on user gesture
   initGame(); running = true;
   document.getElementById('startScreen').classList.add('hidden');
