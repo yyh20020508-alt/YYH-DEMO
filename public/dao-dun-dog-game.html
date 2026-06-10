@@ -457,10 +457,10 @@ function getSwordSegment(entity) {
   const ux = Math.cos(entity.weaponAngle);
   const uy = Math.sin(entity.weaponAngle);
   return {
-    x1: entity.x + ux * (orbit - blade * 0.2),
-    y1: entity.y + uy * (orbit - blade * 0.2),
-    x2: entity.x + ux * (orbit + blade * 0.95),
-    y2: entity.y + uy * (orbit + blade * 0.95),
+    x1: entity.x + ux * (orbit - blade * 0.45),
+    y1: entity.y + uy * (orbit - blade * 0.45),
+    x2: entity.x + ux * (orbit + blade * 1.05),
+    y2: entity.y + uy * (orbit + blade * 1.05),
     blade
   };
 }
@@ -474,6 +474,22 @@ function pointSegDist(px, py, x1, y1, x2, y2) {
   const cx = x1 + dx * t;
   const cy = y1 + dy * t;
   return Math.hypot(px - cx, py - cy);
+}
+
+function drawCenteredBoxText(text, x, y, w, h, font) {
+  ctx.save();
+  ctx.font = font;
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'alphabetic';
+  const m = ctx.measureText(text);
+  const left = m.actualBoundingBoxLeft || 0;
+  const right = m.actualBoundingBoxRight || 0;
+  const ascent = m.actualBoundingBoxAscent || 0;
+  const descent = m.actualBoundingBoxDescent || 0;
+  const tx = x + w / 2 - (left + right) / 2;
+  const ty = y + h / 2 + (ascent - descent) / 2;
+  ctx.fillText(text, tx, ty);
+  ctx.restore();
 }
 
 window.addEventListener('keydown', e => {
@@ -581,8 +597,9 @@ function update() {
     if (e.invincible > 0) { e.invincible--; continue; }
     if (!p.swordActive) continue; // sword skill must be active to attack
     if (p.weaponLevel < e.weaponLevel) continue; // can't hurt stronger enemies
-    const d = dist(p, e);
-    if (Math.abs(d - pOrbit) < e.r + pBlade * 0.5 || d < p.r + e.r + pBlade * 0.3) {
+    const swordSeg = getSwordSegment(p);
+    const swordHit = pointSegDist(e.x, e.y, swordSeg.x1, swordSeg.y1, swordSeg.x2, swordSeg.y2) <= e.r + swordSeg.blade * 0.32;
+    if (swordHit) {
       e.hp--;
       e.invincible = 25;
       sfxHit();
@@ -603,7 +620,7 @@ function update() {
   for (const e of G.enemies) {
     if (p.invincible > 0) continue;
     const swordSeg = getSwordSegment(e);
-    const swordHit = pointSegDist(p.x, p.y, swordSeg.x1, swordSeg.y1, swordSeg.x2, swordSeg.y2) <= p.r + swordSeg.blade * 0.18;
+    const swordHit = pointSegDist(p.x, p.y, swordSeg.x1, swordSeg.y1, swordSeg.x2, swordSeg.y2) <= p.r + swordSeg.blade * 0.32;
     if (p.shieldActive) {
       // Shield blocks: show visual but no damage
       if (swordHit) {
@@ -1161,9 +1178,9 @@ function drawHUD(W, H) {
   const hpColor = p.hp > p.maxHp * 0.5 ? '#4CAF50' : p.hp > p.maxHp * 0.25 ? '#FF9800' : '#F44336';
   roundRect(ctx, 18, st + 2, hpW, 18, 5, hpColor);
   ctx.strokeStyle = 'rgba(255,255,255,0.3)'; ctx.lineWidth = 1; strokeRoundRect(ctx, 16, st, 170, 22, 6);
-  ctx.fillStyle = 'white'; ctx.font = 'bold 11px sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  ctx.fillStyle = 'white';
   ctx.shadowColor='rgba(0,0,0,0.8)'; ctx.shadowBlur=3;
-  ctx.fillText(`❤️ ${Math.max(0,p.hp)} / ${p.maxHp}`, 16 + 170 / 2, st + 22 / 2 + 1);
+  drawCenteredBoxText(`${Math.max(0,p.hp)} / ${p.maxHp} HP`, 16, st, 170, 22, 'bold 11px sans-serif');
   ctx.shadowBlur = 0;
 
   // XP bar
@@ -1171,11 +1188,10 @@ function drawHUD(W, H) {
   const xpW = 166 * p.xp / p.xpNext;
   roundRect(ctx, 18, st + 28, xpW, 10, 3, '#FFD700');
   ctx.strokeStyle = 'rgba(255,215,0,0.4)'; strokeRoundRect(ctx, 16, st + 26, 170, 14, 4);
-  ctx.fillStyle = 'white'; ctx.font = '10px sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  ctx.fillStyle = 'white';
   ctx.shadowColor='rgba(0,0,0,0.8)'; ctx.shadowBlur=2;
-  ctx.fillText(`⚔️ Lv.${p.weaponLevel}  ${p.xp}/${p.xpNext} XP`, 16 + 170 / 2, st + 26 + 14 / 2 + 1);
+  drawCenteredBoxText(`Lv.${p.weaponLevel}  ${p.xp}/${p.xpNext} XP`, 16, st + 26, 170, 14, '10px sans-serif');
   ctx.shadowBlur = 0;
-  ctx.textBaseline = 'alphabetic';
 
   // Score
   ctx.fillStyle = 'white'; ctx.font = 'bold 18px sans-serif'; ctx.textAlign = 'right';
