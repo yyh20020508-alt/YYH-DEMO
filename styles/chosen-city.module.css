@@ -32,7 +32,7 @@
 }
 
 .introScreenActive {
-    padding-top: calc(var(--topbar-full-height, 88px) + 20px);
+    padding-top: calc(var(--topbar-full-height, 88px) - 4px);
     padding-bottom: 90px;
     min-height: calc(100dvh - 32px);
     display: block;
@@ -43,7 +43,7 @@
 }
 
 .quizScreenActive {
-    padding-top: calc(var(--topbar-full-height, 88px) + 20px);
+    padding-top: calc(var(--topbar-full-height, 88px) - 4px);
     padding-right: 16px;
     padding-bottom: 90px;
     padding-left: 16px;
@@ -61,7 +61,7 @@
 
 .resultScreenActive {
     min-height: calc(100dvh - 32px);
-    padding-top: calc(var(--topbar-full-height, 88px) + 20px);
+    padding-top: calc(var(--topbar-full-height, 88px) - 4px);
     padding-right: 16px;
     padding-bottom: 90px;
     padding-left: 16px;

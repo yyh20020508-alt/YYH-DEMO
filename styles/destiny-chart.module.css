@@ -152,7 +152,7 @@
 }
 
 .desc {
-    margin-top: 16px;
+    margin-top: 14px;
     max-width: 520px;
     font-size: 14px;
     line-height: 1.8;
@@ -161,8 +161,8 @@
 }
 
 .panel {
-    margin-top: 14px;
-    padding: 18px 16px;
+    margin-top: 6px;
+    padding: 16px;
     border-radius: 22px;
     background: rgba(255, 255, 255, .94);
     box-shadow: var(--dc-panel-shadow);
@@ -242,7 +242,8 @@
 
 .stack {
     display: grid;
-    gap: 12px;
+    gap: 16px;
+    margin-bottom: 16px;
 }
 
 .stack .field {
@@ -252,7 +253,7 @@
 .chips {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 10px;
 }
 
 .chip {
@@ -298,7 +299,7 @@
     border: 0;
     cursor: pointer;
     transition: all .2s;
-    margin-top: 10px;
+    margin-top: 16px;
 }
 
 .button:hover {
@@ -1014,7 +1015,7 @@
 /* Birth place row */
 .bpRow {
     display: flex;
-    gap: 10px;
+    gap: 12px;
 }
 
 .bpRow select {
