@@ -93,6 +93,31 @@
       font-size: 13px;
       color: rgba(255, 255, 255, 0.72);
     }
+    .pause-actions {
+      margin-top: 18px;
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
+    .pause-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 0 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      text-decoration: none;
+      font: 700 14px/1 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+      cursor: pointer;
+    }
+    .pause-action.primary {
+      background: linear-gradient(135deg, #FFD700, #FF9800);
+      color: #1f1602;
+      border-color: rgba(255, 215, 0, 0.24);
+    }
     .desktop-controls-hint {
       position: fixed;
       left: 18px;
@@ -219,7 +244,11 @@
 <div id="pauseOverlay" class="pause-overlay" aria-hidden="true">
   <div class="pause-card">
     <strong>已暂停</strong>
-    <span>点击右上角继续游戏</span>
+    <span>可以继续游戏，或直接返回作品集</span>
+    <div class="pause-actions">
+      <button id="pauseResumeBtn" class="pause-action primary" type="button">继续游戏</button>
+      <a href="/" class="pause-action">返回作品集</a>
+    </div>
   </div>
 </div>
 <div id="desktopControlsHint" class="desktop-controls-hint" aria-hidden="true">
@@ -338,6 +367,7 @@ const startBtn = document.getElementById('startBtn');
 const desktopControlsHint = document.getElementById('desktopControlsHint');
 const pauseToggle = document.getElementById('pauseToggle');
 const pauseOverlay = document.getElementById('pauseOverlay');
+const pauseResumeBtn = document.getElementById('pauseResumeBtn');
 
 function updateDesktopControlsHint() {
   const desktopLike =
@@ -1486,7 +1516,10 @@ document.getElementById('restartBtn').addEventListener('click', () => {
   updateDesktopControlsHint();
 });
 pauseToggle.addEventListener('click', () => togglePause());
-pauseOverlay.addEventListener('click', () => togglePause(false));
+pauseResumeBtn.addEventListener('click', () => togglePause(false));
+pauseOverlay.addEventListener('click', e => {
+  if (e.target === pauseOverlay) togglePause(false);
+});
 updatePauseUI();
 updateDesktopControlsHint();
 
