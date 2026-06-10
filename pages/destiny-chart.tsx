@@ -928,9 +928,14 @@ function DestinyChart() {
     useEffect(() => {
         if (showResult && reading) {
             drawChart();
+        }
+    }, [showResult, reading, selAge, chartMode, pointGap, drawChart]);
+
+    useEffect(() => {
+        if (showResult && reading) {
             scrollToAge(selAge);
         }
-    }, [showResult, reading, selAge, chartMode, pointGap, drawChart, scrollToAge]);
+    }, [showResult, reading, selAge, chartMode, scrollToAge]);
 
     useEffect(() => {
         if (!showResult || !reading) {
@@ -1550,7 +1555,7 @@ function DestinyChart() {
                         <div className={styles.heroRow}>
                             <div className={styles.heroMain}>
                                 <h1 className={styles.heroTitle}>命运图谱</h1>
-                                <div className={styles.eyebrow}>DESTINY ATLAS</div>
+                                <div className={`${styles.eyebrow} ${styles.eyebrowBelow}`}>DESTINY ATLAS</div>
                             </div>
                             <div className={styles.heroActions}>
                                 <button className={styles.shareBtn} onClick={openShare}>
